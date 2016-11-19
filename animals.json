@@ -1,0 +1,20 @@
+{
+"animals": [
+    {
+        "name" : "Onça pintada",
+        "description" : "The jaguar is the third-largest feline after the tiger and the lion, and the largest in the Americas. The jaguar's present range extends from Southwestern United States and Mexico across much of Central America and south to Paraguay and northern Argentina.",
+        "photo" : "http://portaldoamazonas.com/wp-content/uploads/2016/04/40-e1461596236789-256x256.jpg"
+    },
+    {
+        "name" : "Logo guará",
+        "description" : "Maned wolf is the largest canid of South America. Its markings resemble those of foxes, but it is not a fox, nor is it a wolf, as it is not closely related to other canids. It is the only species in the genus Chrysocyon (meaning golden dog).",
+        "photo" : "https://lh6.googleusercontent.com/-FAqfMA2t6GU/AAAAAAAAAAI/AAAAAAAAAA0/h5U58OVlXkM/photo.jpg?sz=256"
+    },
+    {
+        "name" : "Urutau",
+        "description" : "Urutau is a nocturnal bird. Its food consists basically of insects that catch in flight, especially large ones, but can eat other small animals, such as bats, lizards and small birds.",
+        "photo" : "https://i1.sndcdn.com/artworks-000112670227-b0i8vy-t300x300.jpg"
+    }
+
+]
+}

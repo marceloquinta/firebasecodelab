@@ -1,0 +1,98 @@
+
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>Firebase Android Codelab</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="../styles/codelab.css">
+  <style>
+    html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+  </style>
+</head>
+
+<body class="codelab-takeover">
+  <div class="codelab__toc">
+    <a href="index.html" class="toc-item toc-item--complete">
+      <span class="toc-item__index">1</span>
+      <span class="toc-item__title">Overview</span>
+    </a>
+    <a href="step-2.html" class="toc-item toc-item--complete">
+      <span class="toc-item__index">2</span>
+      <span class="toc-item__title">Get the sample code</span>
+    </a>
+    <a href="step-3.html" class="toc-item toc-item--complete">
+      <span class="toc-item__index">3</span>
+      <span class="toc-item__title">Import the starter app</span>
+    </a>
+    <a href="step-4.html" class="toc-item toc-item--current">
+      <span class="toc-item__index">4</span>
+      <span class="toc-item__title">Create Firebase console Project</span>
+    </a>
+    <a href="step-5.html" class="toc-item">
+        <span class="toc-item__index">5</span>
+        <span class="toc-item__title">Run the starter app</span>
+    </a>
+    <a href="step-6.html" class="toc-item">
+        <span class="toc-item__index">6</span>
+        <span class="toc-item__title">Enable Authentication</span>
+    </a>
+    <a href="step-7.html" class="toc-item">
+        <span class="toc-item__index">7</span>
+        <span class="toc-item__title">Activate Firebase Realtime Database</span>
+    </a>
+    <a href="step-8.html" class="toc-item">
+        <span class="toc-item__index">8</span>
+        <span class="toc-item__title">Receive Messages</span>
+    </a>
+    <a href="step-16.html" class="toc-item">
+        <span class="toc-item__index">9</span>
+        <span class="toc-item__title">Congratulations!</span>
+    </a>
+  </div>
+
+  <div class="codelab__step">
+
+    <div class="step__header">
+      <a href="step-3.html">
+        <svg fill="#FFFFFF" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+        </svg>
+      </a>
+
+      <a href="index.html" title="Return to home page">
+        <svg fill="#FFFFFF" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+          <path d="M0 0h24v24H0z" fill="none"/>
+        </svg>
+      </a>
+
+      <a href="step-5.html">
+        <svg fill="#FFFFFF" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+        </svg>
+      </a>
+
+      <h1>Firebase Android Codelab</h1>
+    </div>
+
+    <div class="step__body">
+      <h1>Firebase Android Codelab</h1>
+      <h2>4. Create Firebase console Project</h2>
+      <div><ol type="1" start="1"><li>Go to the <a href="https://console.firebase.google.com" target="_blank">Firebase console</a>.</li><li>Select <strong>Create New Project</strong>, and name your project &#34;CerradoAnimals.&#34;</li></ol><h3>Connect your Android app</h3><ol type="1" start="1"><li>From the overview screen of your new project,
+click <strong>Add Firebase to your Android app</strong>. </li><li>Enter the codelab&#39;s package name: <code>ru.devfestsiberia.codelabfirebase</code>.</li><li>Enter the SHA1 of your signing keystore. If you are using the standard debug keystore, use the command below to find the SHA1 hash:</li></ol><pre><code>keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore -list -v -storepass android</code></pre><div class="step__note note--special"><p><strong>Note</strong>: Your debug keystore, usually called &#34;debug.keystore&#34;, is often located at </p><p>&lt;home&gt;/.android/debug.keystore</p><p>See <a href="https://developers.google.com/android/guides/client-auth" target="_blank">here</a> for more detail on finding SHA1.</p></div><h3>Add google-services.json file to your app</h3><p>After adding the package name and SHA1 and selecting Continue<strong>,</strong> your browser automatically downloads a configuration file that contains all the necessary Firebase metadata for your app. Copy the google-services.json file into the <code><em>app</em></code> directory in your project.</p><h3>Add google-services plugin to your app</h3><p>The google-services plugin uses the google-services.json file to configure your application to use Firebase. The following line should already be added to the end of the build.gradle file in the <b><code><em>app</em></code> directory of your project</b> (check to confirm):</p><pre><code>apply plugin: &#39;com.google.gms.google-services&#39;</code></pre><h3>Sync your project with gradle files</h3><p>To be sure that all dependencies are available to your app, you should sync your project with gradle files at this point. Select <strong>Sync Project with Gradle Files </strong>(<img src="img/19a637a9cffe4b32.png" style="max-width: 21.31px"/>) from the Android Studio tool bar.</p><div class="step__note note--special"><p><strong>Note</strong>: For this codelab, you should only need to use Sync Project with Gradle files at this point.</p></div></div>
+    </div>
+
+  </div>
+  <script src="../../scripts/codelab.js" async></script>
+</body>
+</html>

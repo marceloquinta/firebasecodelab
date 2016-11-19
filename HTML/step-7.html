@@ -1,0 +1,126 @@
+
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>Firebase Android Codelab</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="../styles/codelab.css">
+  <style>
+    html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+  </style>
+</head>
+
+<body class="codelab-takeover">
+  <div class="codelab__toc">
+    <a href="index.html" class="toc-item toc-item--complete">
+      <span class="toc-item__index">1</span>
+      <span class="toc-item__title">Overview</span>
+    </a>
+    <a href="step-2.html" class="toc-item toc-item--complete">
+      <span class="toc-item__index">2</span>
+      <span class="toc-item__title">Get the sample code</span>
+    </a>
+    <a href="step-3.html" class="toc-item toc-item--complete">
+      <span class="toc-item__index">3</span>
+      <span class="toc-item__title">Import the starter app</span>
+    </a>
+    <a href="step-4.html" class="toc-item toc-item--complete">
+      <span class="toc-item__index">4</span>
+      <span class="toc-item__title">Create Firebase console Project</span>
+    </a>
+    <a href="step-5.html" class="toc-item toc-item--complete">
+      <span class="toc-item__index">5</span>
+      <span class="toc-item__title">Run the starter app</span>
+    </a>
+    <a href="step-6.html" class="toc-item toc-item--complete">
+      <span class="toc-item__index">6</span>
+      <span class="toc-item__title">Enable Authentication</span>
+    </a>
+    <a href="step-7.html" class="toc-item toc-item--current">
+      <span class="toc-item__index">7</span>
+      <span class="toc-item__title">Activate Firebase Realtime Database</span>
+    </a>
+    <a href="step-8.html" class="toc-item">
+        <span class="toc-item__index">8</span>
+        <span class="toc-item__title">Receive Messages</span>
+    </a>
+    <a href="step-16.html" class="toc-item">
+        <span class="toc-item__index">9</span>
+        <span class="toc-item__title">Congratulations!</span>
+    </a>
+  </div>
+
+  <div class="codelab__step">
+
+    <div class="step__header">
+      <a href="step-6.html">
+        <svg fill="#FFFFFF" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+        </svg>
+      </a>
+
+      <a href="index.html" title="Return to home page">
+        <svg fill="#FFFFFF" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+          <path d="M0 0h24v24H0z" fill="none"/>
+        </svg>
+      </a>
+
+      <a href="step-8.html">
+        <svg fill="#FFFFFF" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+        </svg>
+      </a>
+
+      <h1>Firebase Android Codelab</h1>
+    </div>
+
+    <div class="step__body">
+      <h1>Firebase Android Codelab</h1>
+      <h2>7. Activate Firebase Realtime Database</h2>
+      <div><h3>Import the animal list</h3><ol type="1" start="1"><li>In your project in Firebase console, select <strong>Database</strong> on the left navigation menu.</li><li>In the overflow menu of the Database, select <strong>Import JSON</strong>. </li><li>Browse to the animals.json file in the root of the cloned repository, and select it. </li><li>Click <strong>Import</strong>.</li></ol><div class="step__note note--special"><p><strong>Note</strong>: This replaces any data currently in your database.</p></div><p>After importing the JSON file, your database will be fullfilled with a animal array. Try to navigate in the visual UI and explore it as you want.</p>
+          
+          <h3>Add Firebase Realtime Database dependency</h3><p>In the dependencies block of the app/build.gradle file, the following dependency should be included. For this codelab, it is already added for convenience; confirm this by looking in the app/build.gradle file:</p><h3>Dependency in app/build.gradle</h3><pre><code>compile &#39;com.google.firebase:firebase-database:9.8.0&#39;</code></pre><h3>Synchronize animals</h3><p>Add code that synchronizes newly added animals to the app UI.</p><p>Initialize the Firebase Realtime Database and add a listener to handle changes made to the data. Update the RecyclerView adapter so new messages will be shown.</p><p>Update the method <code>setupList()</code> in the <code>MainActivity</code> class:</p><h3>MainActivity.java</h3><pre><code>private void setupList(){
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("animals");
+    myRef.keepSynced(true);
+    myRef.addValueEventListener(new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            // This method is called once with the initial value and again
+            // whenever data at this location is updated.
+            GenericTypeIndicator<List<Animal>> genericTypeIndicator = new GenericTypeIndicator<List<Animal>>() {};
+                  
+            animalList = dataSnapshot.getValue(genericTypeIndicator);
+            adapter.setAnimals(animalList);
+            adapter.notifyDataSetChanged();
+        }
+                  
+        @Override
+        public void onCancelled(DatabaseError error) {
+            // Failed to read value
+            Log.w("ERROR", "Failed to read value.", error.toException());
+        }
+    });
+}</code></pre>
+          
+<h3>Test animals sync</h3><ol type="1" start="1"><li>Click <strong>Run </strong>(<img src="img/74540ff4e857014c.png" style="max-width: 20.00px"/>).</li><li>Reimport a new animal list or add new ones directly in the Database section of the Firebase console. Confirm that they show up in the List.</li></ol>
+
+          <p>Congratulations, you just added a realtime database to your app!</p></div>
+      <p>If your project is not working, you can try the codelab-database Android project, present in the codelabs folder.</p>
+    </div>
+
+  </div>
+  <script src="../../scripts/codelab.js" async></script>
+</body>
+</html>

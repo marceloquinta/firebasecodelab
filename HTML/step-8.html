@@ -1,0 +1,175 @@
+
+
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+                    <title>Firebase Android Codelab</title>
+                    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+                        <link rel="stylesheet" href="../styles/codelab.css">
+                            <style>
+                                html {
+                                    height: 100%;
+                                    margin: 0;
+                                    padding: 0;
+                                }
+                            </style>
+    </head>
+    
+    <body class="codelab-takeover">
+        <div class="codelab__toc">
+            <a href="index.html" class="toc-item toc-item--complete">
+                <span class="toc-item__index">1</span>
+                <span class="toc-item__title">Overview</span>
+            </a>
+            <a href="step-2.html" class="toc-item toc-item--complete">
+                <span class="toc-item__index">2</span>
+                <span class="toc-item__title">Get the sample code</span>
+            </a>
+            <a href="step-3.html" class="toc-item toc-item--complete">
+                <span class="toc-item__index">3</span>
+                <span class="toc-item__title">Import the starter app</span>
+            </a>
+            <a href="step-4.html" class="toc-item toc-item--complete">
+                <span class="toc-item__index">4</span>
+                <span class="toc-item__title">Create Firebase console Project</span>
+            </a>
+            <a href="step-5.html" class="toc-item toc-item--complete">
+                <span class="toc-item__index">5</span>
+                <span class="toc-item__title">Run the starter app</span>
+            </a>
+            <a href="step-6.html" class="toc-item toc-item--complete">
+                <span class="toc-item__index">6</span>
+                <span class="toc-item__title">Enable Authentication</span>
+            </a>
+            <a href="step-7.html" class="toc-item toc-item--complete">
+                <span class="toc-item__index">7</span>
+                <span class="toc-item__title">Activate Firebase Realtime Database</span>
+            </a>
+            <a href="step-8.html" class="toc-item toc-item--complete toc-item--current">
+                <span class="toc-item__index">8</span>
+                <span class="toc-item__title">Receive messages</span>
+            </a>
+            <a href="step-16.html" class="toc-item">
+                <span class="toc-item__index">9</span>
+                <span class="toc-item__title">Congratulations!</span>
+            </a>
+        </div>
+        
+        <div class="codelab__step">
+            
+            <div class="step__header">
+                <a href="step-8.html">
+                    <svg fill="#FFFFFF" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                    </svg>
+                </a>
+                
+                <a href="index.html" title="Return to home page">
+                    <svg fill="#FFFFFF" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                    </svg>
+                </a>
+                
+                <a href="step-10.html">
+                    <svg fill="#FFFFFF" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                    </svg>
+                </a>
+                
+                <h1>Firebase Android Codelab</h1>
+            </div>
+            
+            <div class="step__body">
+                <h1>Firebase Android Codelab</h1>
+                <h2>9. Receive Reengagement Notifications</h2>
+                <div><p>You can use Firebase Cloud Messaging (FCM) to send notifications to users of your app.  In this section we will configure the application to receive reengagement notifications which you can send from Firebase console.</p><h3>Add FCM dependency</h3><p>The firebase-messaging dependency provides the ability to send and receive FCM messages. Confirm the existence of this dependency to your <code>app/build.gradle</code> file.</p><h3>app/build.gradle</h3><pre><code>compile &#39;com.google.firebase:firebase-messaging:9.8.0&#39;</code></pre><h3>Add FCM Services</h3><p>The <code>RegistrationIntentService</code> class is a background service is used to request the InstanceID token which identifies the application to the FCM server. It also subscribes to the topic that will be used to send re-engagement notifications (via topic messaging).</p><p>The class <code>MyFirebaseMessagingService</code> will be the background service that handles incoming FCM messages.  </p><p>Update it to <strong>extend </strong><code>FirebaseMessagingService</code> which is provided by the firebase-fcm library added earlier. It automatically handles notification messages, which are messages that the server specifies should produce a notification. To handle data messages (which are passed silently to the app rather than automatically creating a notification) you can override the <code>onMessageReceived</code> method from the <code>FirebaseMessagingService</code> base class:</p><p><strong>MyFirebaseMessagingService.java</strong></p><pre><code>public class MyFirebaseMessagingService extends FirebaseMessagingService {
+                    
+                    private static final String TAG = &#34;MyFMService&#34;;
+                    
+                    @Override
+                    public void onMessageReceived(RemoteMessage remoteMessage) {
+                    // Handle data payload of FCM messages.
+                    Log.d(TAG, &#34;FCM Message Id: &#34; + remoteMessage.getMessageId());
+                    Log.d(TAG, &#34;FCM Notification Message: &#34; +
+                    remoteMessage.getNotification());
+                    Log.d(TAG, &#34;FCM Data Message: &#34; + remoteMessage.getData());
+                    }
+                    }
+                </code></pre><p>The class <code>MyFirebaseInstanceIdService</code> will be a service used to handle FCM logic. This service is used to alert the application when a new InstanceID token is generated, and to retrieve the generated token.</p><p>Modify it to <strong>extend </strong><code>FirebaseInstanceIdService</code> and override the <code>onTokenRefresh</code> method to subscribe to a topic. Use the following code to update the <code>onTokenRefresh</code> method in <code>MyFirebaseInstanceIdService</code> to look like this:</p><p><strong>MyInstanceIDListenerService.java</strong></p><pre><code>public class MyFirebaseInstanceIdService extends FirebaseInstanceIdService {
+                    
+                    private static final String TAG = &#34;MyFirebaseIIDService&#34;;
+                    private static final String FRIENDLY_ENGAGE_TOPIC = &#34;friendly_engage&#34;;
+                    
+                    /**
+                    * The Application&#39;s current Instance ID token is no longer valid
+                    * and thus a new one must be requested.
+                    */
+                    @Override
+                    public void onTokenRefresh() {
+                    // If you need to handle the generation of a token, initially or
+                    // after a refresh this is where you should do that.
+                    String token = FirebaseInstanceId.getInstance().getToken();
+                    Log.d(TAG, &#34;FCM Token: &#34; + token);
+                    
+                    // Once a token is generated, we subscribe to topic.
+                    FirebaseMessaging.getInstance()
+                    .subscribeToTopic(FRIENDLY_ENGAGE_TOPIC);
+                    }
+                    }</code></pre><p>Add service declarations for the <code>MyFirebaseListenerService</code> and the <code>MyInstanceIdListenerService</code>. Add these declarations as children of the application element.</p><p><strong>AndroidManifest.xml</strong></p><pre><code>&lt;service
+                        android:name=&#34;.model.pushnotification.MyFirebaseMessagingService&#34;
+                        android:exported=&#34;false&#34;&gt;
+                        &lt;intent-filter&gt;
+                        &lt;action android:name=&#34;com.google.firebase.MESSAGING_EVENT&#34; /&gt;
+                        &lt;/intent-filter&gt;
+                        &lt;/service&gt;
+                        
+                        &lt;service
+                        android:name=&#34;.MyFirebaseInstanceIdService&#34;
+                        android:exported=&#34;false&#34;&gt;
+                        &lt;intent-filter&gt;
+                        &lt;action android:name=&#34;com.google.firebase.INSTANCE_ID_EVENT&#34; /&gt;
+                        &lt;/intent-filter&gt;
+                        &lt;/service&gt;
+                        
+                    </code></pre><p>That&#39;s it! FCM is all ready to receive messages.</p><h3>Test Background Notifications</h3><ol type="1" start="1"><li>Run the updated application.</li><li>Hit the device&#39;s home button (or otherwise send the app to the background).</li><li>Use the Composer in the Firebase console to send notifications.</li></ol><ol type="1" start="1"><li>In Firebase console select <strong>Notifications</strong> from the left navigation bar.</li><li>Select <strong>Send Your First Message</strong>.</li><li>Set Message Text to &#34;New animal?&#34;.</li><li>Select the app we connected earlier as the App target.</li><li>Click <strong>Send Message</strong></li></ol><ol type="1" start="4"><li>Confirm that message is received and notification is displayed on the device. The user should receive a notification that takes them back to the application when tapped.</li></ol><p>Hooray! You can re-engage your users easily with FCM. See the <a href="https://firebase.google.com/docs/cloud-messaging" target="_blank">documentation</a> for more on FCM.</p></div>
+            </div>
+            
+        </div>
+        
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+             })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+             
+             ga('create', 'UA-49880327-14', 'auto');
+             
+             (function() {
+              var gaCodelab = '';
+              if (gaCodelab) {
+              ga('create', gaCodelab, 'auto', {name: 'codelab'});
+              }
+              
+              var gaView;
+              var parts = location.search.substring(1).split('&');
+              for (var i = 0; i < parts.length; i++) {
+              var param = parts[i].split('=');
+              if (param[0] === 'viewga') {
+              gaView = param[1];
+              break;
+              }
+              }
+              if (gaView && gaView !== gaCodelab) {
+              ga('create', gaView, 'auto', {name: 'view'});
+              }
+              })();
+            </script>
+        <script src="../../scripts/codelab.js" async></script>
+    </body>
+</html>

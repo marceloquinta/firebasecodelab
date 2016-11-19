@@ -1,0 +1,187 @@
+
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>Firebase Android Codelab</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="../styles/codelab.css">
+  <style>
+    html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+  </style>
+</head>
+
+<body class="codelab-takeover">
+  <div class="codelab__toc">
+    <a href="index.html" class="toc-item toc-item--complete">
+      <span class="toc-item__index">1</span>
+      <span class="toc-item__title">Overview</span>
+    </a>
+    <a href="step-2.html" class="toc-item toc-item--complete">
+      <span class="toc-item__index">2</span>
+      <span class="toc-item__title">Get the sample code</span>
+    </a>
+    <a href="step-3.html" class="toc-item toc-item--complete">
+      <span class="toc-item__index">3</span>
+      <span class="toc-item__title">Import the starter app</span>
+    </a>
+    <a href="step-4.html" class="toc-item toc-item--complete">
+      <span class="toc-item__index">4</span>
+      <span class="toc-item__title">Create Firebase console Project</span>
+    </a>
+    <a href="step-5.html" class="toc-item toc-item--complete">
+      <span class="toc-item__index">5</span>
+      <span class="toc-item__title">Run the starter app</span>
+    </a>
+    <a href="step-6.html" class="toc-item toc-item--current">
+      <span class="toc-item__index">6</span>
+      <span class="toc-item__title">Enable Authentication</span>
+    </a>
+    <a href="step-7.html" class="toc-item">
+        <span class="toc-item__index">7</span>
+        <span class="toc-item__title">Activate Firebase Realtime Database</span>
+    </a>
+    <a href="step-8.html" class="toc-item">
+        <span class="toc-item__index">8</span>
+        <span class="toc-item__title">Receive Messages</span>
+    </a>
+    <a href="step-16.html" class="toc-item">
+        <span class="toc-item__index">9</span>
+        <span class="toc-item__title">Congratulations!</span>
+    </a>
+  </div>
+
+  <div class="codelab__step">
+
+    <div class="step__header">
+      <a href="step-5.html">
+        <svg fill="#FFFFFF" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+        </svg>
+      </a>
+
+      <a href="index.html" title="Return to home page">
+        <svg fill="#FFFFFF" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+          <path d="M0 0h24v24H0z" fill="none"/>
+        </svg>
+      </a>
+
+      <a href="step-7.html">
+        <svg fill="#FFFFFF" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+        </svg>
+      </a>
+
+      <h1>Firebase Android Codelab</h1>
+    </div>
+
+    <div class="step__body">
+      <h1>Firebase Android Codelab</h1>
+      <h2>6. Enable Authentication</h2>
+      <div><p>Let&#39;s require a user to sign in before see the Cerrado animals.</p>
+          <h3>Configure Authentication APIs</h3><p>Before your application can access the Firebase Authentication APIs on behalf of your users, you will have to do enable it </p><ol type="1" start="1"><li>Navigate to the <a href="http://console.firebase.google.com" target="_blank">Firebase console</a> and select your project</li><li>Select <strong>Authentication</strong></li><li>Select the <strong>Sign In Method</strong> tab</li><li>Toggle the <strong>Email/Password</strong> switch to enabled (blue)</li><li>Press <strong>Save</strong> on the resulting dialog</li></ol><p>If you get errors later in this codelab with the message &#34;CONFIGURATION_NOT_FOUND&#34;, come back to this step and double check your work.</p><h3>Add Firebase Auth dependency</h3><p>The firebase-auth allows easy management of authenticated users of your application. Confirm the existence of this dependency to your <code>app/build.gradle</code> file.</p><h3>app/build.gradle</h3><pre><code>compile &#39;com.google.firebase:firebase-auth:9.8.0&#39;</code></pre><p>Add an Auth instance variables in the <code>LoginActivity</code> class:</p><h3>LoginActivity.java (instance variable)</h3><pre><code>// Firebase instance variables
+private FirebaseAuth mAuth;
+private FirebaseAuth.AuthStateListener mAuthListener;</code></pre>
+          
+          <h3>Check for current user</h3><p>Modify <code>LoginActivity.java</code> to send the user to the next screen whenever they open the app and are authenticated. </p><p>Add the following method and call him in the <code>onCreate</code> method.
+          <p><strong>LoginActivity.java</strong></p>
+          <pre><code>@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+        setupAuth();
+}
+
+private void setupAuth() {
+    mAuth = FirebaseAuth.getInstance();
+    mAuthListener = new FirebaseAuth.AuthStateListener() {
+        @Override
+        public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            if (user != null) {
+                // User is signed in
+                Intent intent  = new Intent(getApplicationContext(), MainActivity.class);
+                finishAffinity();
+                startActivity(intent);
+            } else {
+                // User is signed out
+                Snackbar.make(getCurrentFocus(),"Logout", Snackbar.LENGTH_LONG).show();
+            }
+        }
+    };
+}</code></pre>
+          
+
+<p>We want to handle authorization check when the <code>LoginActivity</code> is opened. Then, add the methods to add and remove the <code>authListener</code> in <code>onStart</code> and <code>onStop</code>:</p>
+<p><strong>LoginActivity.java</strong></p><pre><code>@Override
+protected void onStart() {
+    super.onStart();
+    mAuth.addAuthStateListener(mAuthListener);
+}
+
+@Override
+protected void onStop() {
+    super.onStop();
+    if (mAuthListener != null) {
+        mAuth.removeAuthStateListener(mAuthListener);
+    }
+}</code></pre>
+
+
+<!--<p>Then add a new case to <code>onOptionsItemSelected()</code> to handle the sign out button:</p>-->
+<!--<p><strong>MainActivity.java</strong></p><pre><code>    @Override-->
+<!--    public boolean onOptionsItemSelected(MenuItem item) {-->
+<!--        switch (item.getItemId()) {-->
+<!--            case R.id.sign_out_menu:-->
+<!--                mFirebaseAuth.signOut();-->
+<!--                Auth.GoogleSignInApi.signOut(mGoogleApiClient);-->
+<!--                mUsername = ANONYMOUS;-->
+<!--                startActivity(new Intent(this, SignInActivity.class));-->
+<!--                return true;-->
+<!--            default:-->
+<!--                return super.onOptionsItemSelected(item);-->
+<!--        }-->
+<!--    }-->
+<!--</code></pre>-->
+
+
+
+<p>Now we have all of the logic in place to send the user to the sign-in screen when necessary. Next we need to re-implement the sign-in method to properly authenticate users:</p>
+<p><strong>LoginActivity.java</strong></p><pre><code>public void login(View v){
+    
+    String email = ((EditText) findViewById(R.id.edit_email)).getText().toString();
+    String password = ((EditText) findViewById(R.id.edit_password)).getText().toString();
+    
+    mAuth.signInWithEmailAndPassword(email, password)
+    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        @Override
+        public void onComplete(@NonNull Task<AuthResult> task) {
+            if (!task.isSuccessful()) {
+                Snackbar.make(getCurrentFocus(),"Failed to login",
+                    Snackbar.LENGTH_LONG).show();
+            }
+        }
+    });
+}</code></pre>
+<h3>Create new users</h3><p>In the same option you enabled Email/Password login, click in <code>ADD USER</code> and put a new entry with an email and password. Don't forget that passwords must have more than six characters.</p></div>
+
+<h3>Test your work</h3><p>Run the app on your device. Put the email and password providedand tap in the Login button.You will be sent to the animals screen if everything worked well.</p>
+
+<p>If your project is not working, you can try the codelab-auth Android project, present in the codelabs folder.</p>
+    </div>
+    </div>
+
+  </div>
+  <script src="../../scripts/codelab.js" async></script>
+</body>
+</html>

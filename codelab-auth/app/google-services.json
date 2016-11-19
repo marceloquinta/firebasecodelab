@@ -1,0 +1,130 @@
+{
+  "project_info": {
+    "project_number": "56831519771",
+    "firebase_url": "https://golden-totality-132923.firebaseio.com",
+    "project_id": "golden-totality-132923",
+    "storage_bucket": "golden-totality-132923.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56831519771:android:8569d9ba1c186aef",
+        "android_client_info": {
+          "package_name": "com.devfestsiberia.hello"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "56831519771-puf58p0rirmb2rsl34757t0h1biob2ug.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.devfestsiberia.hello",
+            "certificate_hash": "A6AC5D891895CD8AF18226DA0B355EAB97AC2174"
+          }
+        },
+        {
+          "client_id": "56831519771-k6opm9bcjlvh51cc3jqhof1c7a916h85.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJrSM5c14enKbVIwNMs3csG3Whjf2vYcc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "56831519771-k6opm9bcjlvh51cc3jqhof1c7a916h85.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56831519771:android:8ea702b59899e33a",
+        "android_client_info": {
+          "package_name": "ru.devfestsiberia.codelabfirebas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "56831519771-lnor9099r6v0t5u537u18d4a2mv8mu8u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ru.devfestsiberia.codelabfirebas",
+            "certificate_hash": "A6AC5D891895CD8AF18226DA0B355EAB97AC2174"
+          }
+        },
+        {
+          "client_id": "56831519771-k6opm9bcjlvh51cc3jqhof1c7a916h85.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJrSM5c14enKbVIwNMs3csG3Whjf2vYcc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "56831519771-k6opm9bcjlvh51cc3jqhof1c7a916h85.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56831519771:android:a62f75007f8aad60",
+        "android_client_info": {
+          "package_name": "ru.devfestsiberia.codelabfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "56831519771-k6opm9bcjlvh51cc3jqhof1c7a916h85.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJrSM5c14enKbVIwNMs3csG3Whjf2vYcc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

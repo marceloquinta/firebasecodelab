@@ -1,0 +1,1553 @@
+/**
+ * Copyright 2015 Google Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+ * Copyright 2015 Google Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/*******************************
+          Flex Layout
+*******************************/
+.layout.horizontal,
+.layout.horizontal-reverse,
+.layout.vertical,
+.layout.vertical-reverse {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.layout.horizontal {
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.layout.vertical {
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.layout.wrap {
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+
+.flex,
+.flex-1 {
+  -ms-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+}
+
+/* alignment in cross axis */
+.layout.start {
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.layout.center,
+.layout.center-center {
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.layout.end {
+  -webkit-align-items: flex-end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+/* alignment in main axis */
+.layout.start-justified {
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.layout.center-justified,
+.layout.center-center {
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.layout.end-justified {
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.layout.around-justified {
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+}
+
+.layout.justified {
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+/* self alignment */
+.self-start {
+  -webkit-align-self: flex-start;
+      -ms-flex-item-align: start;
+          align-self: flex-start;
+}
+
+.self-center {
+  -webkit-align-self: center;
+      -ms-flex-item-align: center;
+          align-self: center;
+}
+
+.self-end {
+  -webkit-align-self: flex-end;
+      -ms-flex-item-align: end;
+          align-self: flex-end;
+}
+
+.self-stretch {
+  -webkit-align-self: stretch;
+      -ms-flex-item-align: stretch;
+          align-self: stretch;
+}
+
+/*******************************
+          Other Layout
+*******************************/
+.block {
+  display: block;
+}
+
+/* IE 10 support for HTML5 hidden attr */
+[hidden] {
+  display: none !important;
+}
+
+.invisible {
+  visibility: hidden !important;
+}
+
+.relative {
+  position: relative;
+}
+
+.fit {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+body.fullbleed {
+  margin: 0;
+  height: 100vh;
+}
+
+.scroll {
+  -webkit-overflow-scrolling: touch;
+  overflow: auto;
+}
+
+/**
+ * Copyright 2015 Google Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+ * Copyright 2015 Google Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+body {
+  font-family: 'Roboto', 'Noto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #5c5c5c;
+}
+
+h1 {
+  font-family: 'Roboto', 'Noto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 56px;
+  font-weight: 400;
+  letter-spacing: -.026em;
+  line-height: 60px;
+}
+
+h2 {
+  font-family: 'Roboto', 'Noto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 45px;
+  font-weight: 400;
+  letter-spacing: -.018em;
+  line-height: 48px;
+}
+
+h3 {
+  font-family: 'Roboto', 'Noto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 34px;
+  font-weight: 400;
+  letter-spacing: -.01em;
+  line-height: 40px;
+}
+
+h4 {
+  font-family: 'Roboto', 'Noto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -.012em;
+  line-height: 32px;
+}
+
+/**
+ * Copyright 2015 Google Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+ * Copyright 2015 Google Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/* Colors */
+/* Typography */
+/* Breakpoints */
+/**
+ * Copyright 2015 Google Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  background: #ECEFF1;
+}
+
+body.view #banner {
+  padding-top: calc(56px + 24px);
+  padding-bottom: 24px;
+  position: relative;
+}
+
+b {
+  font-weight: 500;
+}
+
+a {
+  text-decoration: none;
+  color: currentcolor;
+}
+
+ul, li {
+  list-style: none;
+  padding: 0;
+}
+
+[drawer] paper-toolbar {
+  background: url(/images/google-codelabs-select-event-bg.jpg) no-repeat 50% 50%;
+  background-size: cover;
+  background-color: #455a64;
+}
+
+[drawer] paper-item {
+  border-bottom: 1px solid #EEEEEE;
+}
+
+[drawer] paper-item a {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+paper-listbox {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+paper-item {
+  position: relative;
+  cursor: pointer;
+  font-weight: 300;
+}
+
+paper-item.iron-selected {
+  background-color: #ECEFF1;
+  color: #455a64;
+}
+
+.site-width {
+  margin: 0 auto;
+  width: 90vw;
+  max-width: 1024px;
+}
+
+#banner {
+  background-color: #fff;
+  padding: 0 40px 0 40px;
+  padding: 40px 0 48px 0;
+  box-shadow: 0px 3px 6px -3px #BDBDBD;
+}
+
+#banner[down] .banner-slider {
+  -webkit-transform: none;
+          transform: none;
+}
+
+#banner[down] .banner-title {
+  visibility: hidden;
+}
+
+#banner h2, #banner h3 {
+  font-weight: 300;
+}
+
+#banner #logo {
+  height: 125px;
+  width: auto;
+  max-width: 100%;
+}
+
+#banner .banner-slider {
+  position: absolute;
+  top: 0;
+  max-width: 100%;
+  width: 100%;
+  background-color: #ECEFF1;
+  color: #546E7A;
+  padding: 8px 0;
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+  transition: -webkit-transform 400ms cubic-bezier(0, 0, 0.2, 1);
+  transition: transform 400ms cubic-bezier(0, 0, 0.2, 1);
+  will-change: transform;
+}
+
+#banner .banner-slider h3 {
+  font-size: 30px;
+}
+
+#banner .banner_arrows {
+  margin-left: 16px;
+}
+
+#banner .banner-title {
+  margin-bottom: 8px;
+}
+
+#banner .banner-description[data-filter-selected] iron-pages {
+  display: block;
+}
+
+#banner .banner-description[data-filter-selected] p.banner-info {
+  display: none;
+}
+
+#banner .banner-description .banner-meta {
+  padding: 0 32px 0 32px;
+}
+
+#banner .banner-description .banner-meta h3 {
+  margin-bottom: 8px;
+}
+
+#banner .banner-description iron-pages {
+  display: none;
+}
+
+#banner paper-button {
+  font-family: 'Roboto', 'Noto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  background-color: #607D8B;
+  padding: 8px 16px;
+  min-width: 150px;
+  color: #fff;
+  text-align: center;
+  border-radius: 0;
+  line-height: initial;
+}
+
+#banner paper-button.iron-selected {
+  background-color: #455a64;
+}
+
+#sortby {
+  padding: 24px 0;
+}
+
+#sortby paper-tabs {
+  color: #616161;
+  text-transform: uppercase;
+}
+
+#sortby paper-tab:hover {
+  background-color: #E0E0E0;
+  opacity: 1;
+}
+
+#categoryfilter {
+  background-color: #fff;
+  width: 200px;
+}
+
+#categoryfilter paper-listbox {
+  width: 200px;
+}
+
+@media (max-width: 767px) {
+  #banner {
+    padding: 16px 0;
+    line-height: 16px;
+  }
+  #banner paper-button {
+    display: inline-block;
+    margin: 16px 0 0 0;
+  }
+  #banner .filters-buttons iron-selector {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+  }
+  .banner-info {
+    line-height: 24px;
+    -webkit-align-self: flex-start;
+        -ms-flex-item-align: start;
+            align-self: flex-start;
+    width: 100%;
+  }
+  .banner-info paper-item {
+    border-bottom: 1px solid #EEEEEE;
+  }
+  .banner-description {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .banner-technologies {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    z-index: 1;
+  }
+  .banner-title {
+    font-size: 7vw;
+  }
+  .banner-meta {
+    display: none;
+  }
+  #logo {
+    margin-bottom: 16px;
+  }
+  #sortby {
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .filters {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .filters {
+    max-width: calc(32% + 3px);
+  }
+  .filters-buttons iron-selector {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+  #banner paper-button {
+    margin-bottom: 16px;
+  }
+  #banner .banner-title {
+    margin-bottom: 16px;
+  }
+  .banner-info {
+    margin-right: 32px;
+    line-height: 32px;
+  }
+  .banner-description {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .banner-description .banner-info {
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+  }
+  .banner-technologies, .banner-events {
+    -webkit-columns: 200px;
+       -moz-columns: 200px;
+            columns: 200px;
+    padding: 0;
+    -webkit-overflow-scrolling: touch;
+    max-height: 128px;
+    transition: -webkit-transform 400ms cubic-bezier(0, 0, 0.2, 1);
+    transition: transform 400ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  .banner-technologies paper-item, .banner-events paper-item {
+    -moz-column-break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    column-break-inside: avoid;
+    min-height: 32px;
+    white-space: nowrap;
+  }
+  .banner-technologies {
+    -webkit-columns: 125px;
+       -moz-columns: 125px;
+            columns: 125px;
+  }
+}
+
+/**
+ * Copyright 2015 Google Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+ * Copyright 2015 Google Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/* Colors */
+/* Typography */
+/* Breakpoints */
+#mainToolbar {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 64px;
+  background-color: #455a64;
+  color: #fff;
+  padding: 16px;
+}
+
+#mainToolbar paper-icon-button[icon="menu"] {
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+}
+
+#mainToolbar a {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#mainToolbar .logo-icon {
+  margin-right: 16px;
+  width: 30px;
+  height: 24px;
+}
+
+#mainToolbar .logo-devs {
+  width: 216px;
+  height: 36px;
+  margin-top: 5px;
+}
+
+#searchbar paper-input-container {
+  padding: 0;
+}
+
+#searchbar paper-input-container label, #searchbar paper-input-container input {
+  color: #fff;
+}
+
+#searchbar paper-input-container label {
+  opacity: 0.5;
+}
+
+@media (min-width: 768px) {
+  #searchbar {
+    background-color: #546E7A;
+    transition: background-color 400ms cubic-bezier(0, 0, 0.2, 1);
+    width: 100%;
+  }
+  #searchbar:hover {
+    background-color: #78909C;
+  }
+  .logo-devs {
+    margin: 5px 32px 0 0;
+  }
+}
+
+@media (max-width: 767px) {
+  #searchbar paper-input-container {
+    display: none;
+  }
+  #mainToolbar {
+    height: 56px;
+  }
+  #mainToolbar paper-icon-button[icon="menu"] {
+    width: 40px;
+    margin-right: 8px;
+  }
+}
+
+/**
+ * Copyright 2015 Google Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+ * Copyright 2015 Google Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/* Colors */
+/* Typography */
+/* Breakpoints */
+/**
+ * Copyright 2015 Google Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/* #0097A7; */
+.default-bg {
+  background-color: #BDBDBD;
+}
+
+.default-bg ~ .card-footer paper-button {
+  color: #BDBDBD;
+}
+
+.default-bg ~ .card-footer paper-button:hover, .default-bg ~ .card-footer paper-button[focused] {
+  background: rgba(189, 189, 189, 0.1);
+}
+
+.about-bg {
+  background-color: #78909C;
+}
+
+.about-bg ~ .card-footer paper-button {
+  color: #78909C;
+}
+
+.about-bg ~ .card-footer paper-button:hover, .about-bg ~ .card-footer paper-button[focused] {
+  background: rgba(120, 144, 156, 0.1);
+}
+
+.ads-bg {
+  background-color: #4caf50;
+}
+
+.ads-bg ~ .card-footer paper-button {
+  color: #4caf50;
+}
+
+.ads-bg ~ .card-footer paper-button:hover, .ads-bg ~ .card-footer paper-button[focused] {
+  background: rgba(76, 175, 80, 0.1);
+}
+
+.analytics-bg {
+  background-color: #fb8c00;
+}
+
+.analytics-bg ~ .card-footer paper-button {
+  color: #fb8c00;
+}
+
+.analytics-bg ~ .card-footer paper-button:hover, .analytics-bg ~ .card-footer paper-button[focused] {
+  background: rgba(251, 140, 0, 0.1);
+}
+
+.android-bg,
+.android-auto-bg,
+.android-tv-bg,
+.android-wear-bg {
+  background-color: #a0bd3a;
+}
+
+.android-bg ~ .card-footer paper-button,
+.android-auto-bg ~ .card-footer paper-button,
+.android-tv-bg ~ .card-footer paper-button,
+.android-wear-bg ~ .card-footer paper-button {
+  color: #a0bd3a;
+}
+
+.android-bg ~ .card-footer paper-button:hover, .android-bg ~ .card-footer paper-button[focused],
+.android-auto-bg ~ .card-footer paper-button:hover,
+.android-auto-bg ~ .card-footer paper-button[focused],
+.android-tv-bg ~ .card-footer paper-button:hover,
+.android-tv-bg ~ .card-footer paper-button[focused],
+.android-wear-bg ~ .card-footer paper-button:hover,
+.android-wear-bg ~ .card-footer paper-button[focused] {
+  background: rgba(160, 189, 58, 0.1);
+}
+
+.apps-bg {
+  background-color: #689F38;
+}
+
+.apps-bg ~ .card-footer paper-button {
+  color: #689F38;
+}
+
+.apps-bg ~ .card-footer paper-button:hover, .apps-bg ~ .card-footer paper-button[focused] {
+  background: rgba(104, 159, 56, 0.1);
+}
+
+.brillo-bg {
+  background-color: #4285F4;
+}
+
+.brillo-bg ~ .card-footer paper-button {
+  color: #4285F4;
+}
+
+.brillo-bg ~ .card-footer paper-button:hover, .brillo-bg ~ .card-footer paper-button[focused] {
+  background: rgba(66, 133, 244, 0.1);
+}
+
+.cast-bg {
+  background-color: #4caf50;
+}
+
+.cast-bg ~ .card-footer paper-button {
+  color: #4caf50;
+}
+
+.cast-bg ~ .card-footer paper-button:hover, .cast-bg ~ .card-footer paper-button[focused] {
+  background: rgba(76, 175, 80, 0.1);
+}
+
+.cloud-about-bg,
+.cloud-bg,
+.cloud-cloud-tools-bg,
+.cloud-compute-bg,
+.cloud-data-bg,
+.cloud-general-bg,
+.cloud-mobile-bg,
+.cloud-monitoring-bg,
+.cloud-networking-bg,
+.cloud-others-bg,
+.cloud-web-bg,
+.cloud-machine-learning-bg {
+  background-color: #4285f4;
+}
+
+.cloud-about-bg ~ .card-footer paper-button,
+.cloud-bg ~ .card-footer paper-button,
+.cloud-cloud-tools-bg ~ .card-footer paper-button,
+.cloud-compute-bg ~ .card-footer paper-button,
+.cloud-data-bg ~ .card-footer paper-button,
+.cloud-general-bg ~ .card-footer paper-button,
+.cloud-mobile-bg ~ .card-footer paper-button,
+.cloud-monitoring-bg ~ .card-footer paper-button,
+.cloud-networking-bg ~ .card-footer paper-button,
+.cloud-others-bg ~ .card-footer paper-button,
+.cloud-web-bg ~ .card-footer paper-button,
+.cloud-machine-learning-bg ~ .card-footer paper-button {
+  color: #4285f4;
+}
+
+.cloud-about-bg ~ .card-footer paper-button:hover, .cloud-about-bg ~ .card-footer paper-button[focused],
+.cloud-bg ~ .card-footer paper-button:hover,
+.cloud-bg ~ .card-footer paper-button[focused],
+.cloud-cloud-tools-bg ~ .card-footer paper-button:hover,
+.cloud-cloud-tools-bg ~ .card-footer paper-button[focused],
+.cloud-compute-bg ~ .card-footer paper-button:hover,
+.cloud-compute-bg ~ .card-footer paper-button[focused],
+.cloud-data-bg ~ .card-footer paper-button:hover,
+.cloud-data-bg ~ .card-footer paper-button[focused],
+.cloud-general-bg ~ .card-footer paper-button:hover,
+.cloud-general-bg ~ .card-footer paper-button[focused],
+.cloud-mobile-bg ~ .card-footer paper-button:hover,
+.cloud-mobile-bg ~ .card-footer paper-button[focused],
+.cloud-monitoring-bg ~ .card-footer paper-button:hover,
+.cloud-monitoring-bg ~ .card-footer paper-button[focused],
+.cloud-networking-bg ~ .card-footer paper-button:hover,
+.cloud-networking-bg ~ .card-footer paper-button[focused],
+.cloud-others-bg ~ .card-footer paper-button:hover,
+.cloud-others-bg ~ .card-footer paper-button[focused],
+.cloud-web-bg ~ .card-footer paper-button:hover,
+.cloud-web-bg ~ .card-footer paper-button[focused],
+.cloud-machine-learning-bg ~ .card-footer paper-button:hover,
+.cloud-machine-learning-bg ~ .card-footer paper-button[focused] {
+  background: rgba(66, 133, 244, 0.1);
+}
+
+.chrome-bg {
+  background-color: #4285f4;
+}
+
+.chrome-bg ~ .card-footer paper-button {
+  color: #4285f4;
+}
+
+.chrome-bg ~ .card-footer paper-button:hover, .chrome-bg ~ .card-footer paper-button[focused] {
+  background: rgba(66, 133, 244, 0.1);
+}
+
+.firebase-bg {
+  background-color: #0288D1;
+}
+
+.firebase-bg ~ .card-footer paper-button {
+  color: #0288D1;
+}
+
+.firebase-bg ~ .card-footer paper-button:hover, .firebase-bg ~ .card-footer paper-button[focused] {
+  background: rgba(2, 136, 209, 0.1);
+}
+
+.firebase-web-bg {
+  background-color: #4285f4;
+}
+
+.firebase-web-bg ~ .card-footer paper-button {
+  color: #4285f4;
+}
+
+.firebase-web-bg ~ .card-footer paper-button:hover, .firebase-web-bg ~ .card-footer paper-button[focused] {
+  background: rgba(66, 133, 244, 0.1);
+}
+
+.games-bg,
+.play-games-bg {
+  background-color: #F2531C;
+}
+
+.games-bg ~ .card-footer paper-button,
+.play-games-bg ~ .card-footer paper-button {
+  color: #F2531C;
+}
+
+.games-bg ~ .card-footer paper-button:hover, .games-bg ~ .card-footer paper-button[focused],
+.play-games-bg ~ .card-footer paper-button:hover,
+.play-games-bg ~ .card-footer paper-button[focused] {
+  background: rgba(242, 83, 28, 0.1);
+}
+
+.geo-bg {
+  background-color: #4285f4;
+}
+
+.geo-bg ~ .card-footer paper-button {
+  color: #4285f4;
+}
+
+.geo-bg ~ .card-footer paper-button:hover, .geo-bg ~ .card-footer paper-button[focused] {
+  background: rgba(66, 133, 244, 0.1);
+}
+
+.nest-bg {
+  background-color: #00AFD8;
+}
+
+.nest-bg ~ .card-footer paper-button {
+  color: #00AFD8;
+}
+
+.nest-bg ~ .card-footer paper-button:hover, .nest-bg ~ .card-footer paper-button[focused] {
+  background: rgba(0, 175, 216, 0.1);
+}
+
+.search-bg {
+  background-color: #4285f4;
+}
+
+.search-bg ~ .card-footer paper-button {
+  color: #4285f4;
+}
+
+.search-bg ~ .card-footer paper-button:hover, .search-bg ~ .card-footer paper-button[focused] {
+  background: rgba(66, 133, 244, 0.1);
+}
+
+.unity-bg {
+  background-color: #757575;
+}
+
+.unity-bg ~ .card-footer paper-button {
+  color: #757575;
+}
+
+.unity-bg ~ .card-footer paper-button:hover, .unity-bg ~ .card-footer paper-button[focused] {
+  background: rgba(117, 117, 117, 0.1);
+}
+
+.vr-bg, .virtual-reality-bg {
+  background-color: #FF8A65;
+}
+
+.vr-bg ~ .card-footer paper-button, .virtual-reality-bg ~ .card-footer paper-button {
+  color: #FF8A65;
+}
+
+.vr-bg ~ .card-footer paper-button:hover, .vr-bg ~ .card-footer paper-button[focused], .virtual-reality-bg ~ .card-footer paper-button:hover, .virtual-reality-bg ~ .card-footer paper-button[focused] {
+  background: rgba(255, 138, 101, 0.1);
+}
+
+.weave-bg {
+  background-color: #0f9d58;
+}
+
+.weave-bg ~ .card-footer paper-button {
+  color: #0f9d58;
+}
+
+.weave-bg ~ .card-footer paper-button:hover, .weave-bg ~ .card-footer paper-button[focused] {
+  background: rgba(15, 157, 88, 0.1);
+}
+
+.web-bg {
+  background-color: #4285f4;
+}
+
+.web-bg ~ .card-footer paper-button {
+  color: #4285f4;
+}
+
+.web-bg ~ .card-footer paper-button:hover, .web-bg ~ .card-footer paper-button[focused] {
+  background: rgba(66, 133, 244, 0.1);
+}
+
+.about-icon {
+  background-image: url("../images/icons/google_g.svg");
+}
+
+.ads-icon {
+  background-image: url("../images/icons/ads.png");
+}
+
+.analytics-icon {
+  background-image: url("../images/icons/analytics.png");
+}
+
+.android-icon,
+.android-auto-icon,
+.android-tv-icon,
+.android-wear-icon {
+  background-image: url("../images/icons/android.svg");
+}
+
+.apps-icon {
+  background-image: url("../images/icons/apps.png");
+}
+
+.brillo-icon {
+  background-image: url("../images/icons/brillo.png");
+}
+
+.cast-icon {
+  background-image: url("../images/icons/cast.png");
+}
+
+.chrome-icon {
+  background-image: url("../images/icons/chrome.svg");
+}
+
+.cloud-icon,
+.cloud-about-icon,
+.cloud-cloud-tools-icon,
+.cloud-general-icon,
+.cloud-others-icon {
+  background-image: url("../images/icons/cloud.png");
+}
+
+.cloud-compute-icon {
+  background-image: url("../images/icons/cloud-compute.png");
+}
+
+.cloud-data-icon {
+  background-image: url("../images/icons/cloud-data.png");
+}
+
+.cloud-mobile-icon {
+  background-image: url("../images/icons/cloud-mobile.png");
+}
+
+.cloud-monitoring-icon {
+  background-image: url("../images/icons/cloud-monitoring.png");
+}
+
+.cloud-networking-icon {
+  background-image: url("../images/icons/cloud-networking.png");
+}
+
+.cloud-web-icon {
+  background-image: url("../images/icons/web.svg");
+}
+
+.cloud-machine-learning-icon {
+  background-image: url("../images/icons/cloud-ml.png");
+}
+
+.firebase-icon {
+  background-image: url("../images/icons/firebase.png");
+}
+
+.firebase-web-icon {
+  background-image: url("../images/icons/web.svg");
+}
+
+.games-icon,
+.play-games-icon,
+.virtual-reality-games-icon {
+  background-image: url("../images/icons/cardboard.png");
+}
+
+.geo-icon {
+  background-image: url("../images/icons/geo.png");
+}
+
+.nest-icon {
+  background-image: url("../images/icons/nest.png");
+}
+
+.search-icon {
+  background-image: url("../images/icons/google_g.svg");
+}
+
+.unity-icon {
+  background-image: url("../images/icons/unity.png");
+}
+
+.vr-icon, .virtual-reality-icon {
+  background-image: url("../images/icons/vr.svg");
+}
+
+.weave-icon {
+  background-image: url("../images/icons/weave.svg");
+}
+
+.web-icon {
+  background-image: url("../images/icons/web.svg");
+}
+
+#cards {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin-bottom: 24px;
+}
+
+.codelab-card {
+  position: relative;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-flex: 1 0 330px;
+      -ms-flex: 1 0 330px;
+          flex: 1 0 330px;
+  margin: 0 16px 16px 0;
+  background-color: #fff;
+  max-width: 330px;
+}
+
+.codelab-card:nth-of-type(3n) {
+  margin-right: 0;
+}
+
+.codelab-card img {
+  margin-right: 4px;
+}
+
+.codelab-card .card-header {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 16px;
+}
+
+.codelab-card .card-header .category-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  background-size: 70%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.codelab-card .card-duration {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  mix-blend-mode: overlay;
+  color: #212121;
+}
+
+.codelab-card .card-updated {
+  font-size: 12px;
+  color: #BDBDBD;
+}
+
+.codelab-card .description {
+  padding: 16px 32px;
+  -webkit-flex: 1 0 auto;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+}
+
+.card-footer {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-top: 1px solid #E0E0E0;
+  padding: 8px 16px;
+}
+
+.card-footer paper-button {
+  font-family: 'Roboto', 'Noto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+
+/* ***** Responsive ***** */
+@media (max-width: 767px) {
+  #cards {
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .codelab-card {
+    margin: 0 0 16px;
+    min-width: 330px;
+    max-width: 100%;
+    width: 100%;
+    -webkit-flex: 1 0 200px;
+        -ms-flex: 1 0 200px;
+            flex: 1 0 200px;
+  }
+  .codelab-card .card-header {
+    border-radius: 0;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .codelab-card .card-header .category-icon {
+    margin: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .codelab-card {
+    min-height: 250px;
+  }
+}
+
+@media (min-width: 767px) and (max-width: 1136px) {
+  .codelab-card {
+    -webkit-flex: 0 0 32%;
+        -ms-flex: 0 0 32%;
+            flex: 0 0 32%;
+    margin: 0 2% 2% 0;
+    min-height: 200px;
+  }
+}
+
+/**
+ * Copyright 2015 Google Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+ * Copyright 2015 Google Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/* Colors */
+/* Typography */
+/* Breakpoints */
+#footer {
+  background-color: #424242;
+  font-size: 13px;
+  padding: 40px 0;
+}
+
+#footer ul, #footer li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#footer a {
+  color: #9e9e9e;
+}
+
+#footer .footer-wrapper {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#footer .link-list {
+  border-top: 1px solid #616161;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin-right: 32px;
+}
+
+#footer .link-list:last-child {
+  margin-right: 0;
+  margin-bottom: 0;
+}
+
+#footer .link-list label {
+  display: block;
+  color: #fff;
+  margin: 8px 0 16px;
+}
+
+.footerbar {
+  background-color: #616161;
+  color: #fff;
+  font-size: 13px;
+  padding: 10px 0;
+}
+
+.footerbar a {
+  color: currentcolor;
+}
+
+.footerbar paper-dropdown-menu {
+  background-color: #fff;
+  padding: 0 4px 0 8px;
+  width: 100px;
+}
+
+.footerbar paper-item {
+  text-transform: uppercase;
+}
+
+@media (max-width: 767px) {
+  #footer {
+    padding: 24px 0;
+  }
+  #footer .footer-wrapper {
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  #footer .link-list {
+    margin: 0 0 24px 0;
+  }
+}
+
+/**
+ * Copyright 2015 Google Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+ * Copyright 2015 Google Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/* Colors */
+/* Typography */
+/* Breakpoints */
+/**
+ * Copyright 2015 Google Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+body.loading paper-toast {
+  visibility: hidden;
+}
+
+body.loading paper-drawer-panel [drawer] {
+  display: none;
+}
+
+body.loading #sortby paper-tabs {
+  height: 48px;
+  opacity: 0;
+  display: block;
+}
+
+body.loading .filters-buttons {
+  pointer-events: none;
+}
+
+body.loading .card-footer {
+  height: 50px;
+}
+
+body.loading .card-footer paper-button {
+  opacity: 0;
+}
+
+body.loading .footerbar {
+  height: 60px;
+}
+
+body.loading paper-dropdown-menu {
+  visibility: hidden;
+  height: 40px;
+}
+
+body.loading .banner-technologies,
+body.loading .banner-events {
+  display: none;
+}
+
+body.loading #searchbar paper-input-container {
+  opacity: 0;
+}
+
+#sortby paper-tabs,
+.card-footer paper-button,
+#searchbar paper-input-container {
+  transition: opacity 400ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+@media (max-width: 767px) {
+  #mainToolbar paper-icon-button[icon="menu"] {
+    width: 40px;
+  }
+}
